@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="490" viewBox="0 0 1600 490" role="img" aria-labelledby="title desc">
+<title id="title">Hi, I'm Jemma. Welcome to my Data Lab.</title>
+<desc id="desc">Dark navy and violet profile banner with a playful RAW to CLEAN to READY data pipeline.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2=".15">
+    <stop offset="0" stop-color="#0B1228"/><stop offset=".55" stop-color="#151C3F"/><stop offset="1" stop-color="#302664"/>
+  </linearGradient>
+  <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#B9C7F8" opacity=".16"/></pattern>
+  <filter id="shadow" x="-40%" y="-40%" width="200%" height="200%"><feDropShadow dx="9" dy="10" stdDeviation="1" flood-color="#020617" flood-opacity=".85"/></filter>
+</defs>
+<rect width="1600" height="490" fill="url(#bg)"/>
+<rect x="900" y="20" width="700" height="420" fill="url(#dots)"/>
+<g fill="none" stroke="#8E7BF4" stroke-width="1.7" opacity=".55">
+  <path d="M1060 190 Q1190 -40 1416 55"/><path d="M1070 215 Q1200 -18 1416 75"/><path d="M1080 239 Q1205 10 1416 95"/><path d="M1090 261 Q1210 33 1416 115"/>
+</g>
+<rect x="78" y="48" width="74" height="44" rx="14" fill="#5E49D6"/>
+<text x="115" y="78" fill="#fff" font-size="26" font-family="Arial,Helvetica,sans-serif" text-anchor="middle" font-weight="700">jg.</text>
+<text x="172" y="78" fill="#B7C9EA" font-size="23" font-family="Consolas,Menlo,monospace" letter-spacing="1.2">DATA LAB  /  PROFILE</text>
+<text x="78" y="226" fill="#F8FAFF" font-size="96" font-family="Arial,Helvetica,sans-serif" font-weight="750" letter-spacing="-3">Hi, I'm Jemma.</text>
+<text x="80" y="293" fill="#C8E4F5" font-size="38" font-family="Arial,Helvetica,sans-serif">I make messy data make sense.</text>
+<rect x="80" y="342" width="606" height="59" rx="23" fill="#2B395D" stroke="#8FAFE9" stroke-width="1.5"/>
+<circle cx="110" cy="372" r="10" fill="#FF736B"/>
+<text x="136" y="380" fill="#F7F8FF" font-size="24" font-family="Arial,Helvetica,sans-serif" font-weight="700">Databricks Data Engineer Associate</text>
+<text x="80" y="456" fill="#ADC5E9" font-size="18" font-family="Consolas,Menlo,monospace" letter-spacing=".9">SQL  ·  PYTHON  ·  PYSPARK  ·  DELTA LAKE</text>
+<g fill="none" stroke="#7087D7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M1078 235 L1147 274"/><path d="M1276 285 L1332 239"/>
+ <path d="M1138 264 l9 10 l-13 0"/><path d="M1318 244 l14 -5 l-4 15"/>
+</g>
+<g filter="url(#shadow)">
+ <rect x="950" y="165" width="142" height="146" rx="22" fill="#202D4F" stroke="#57D5EB" stroke-width="3"/>
+ <rect x="1140" y="213" width="140" height="144" rx="22" fill="#242953" stroke="#AA8CFB" stroke-width="3"/>
+ <rect x="1330" y="151" width="140" height="144" rx="22" fill="#202B4F" stroke="#FFC25C" stroke-width="3"/>
+</g>
+<g fill="none" stroke-width="4">
+ <ellipse cx="1021" cy="199" rx="24" ry="8" stroke="#57D5EB"/><path d="M997 199 v30 q24 34 48 0 v-30" stroke="#57D5EB"/>
+ <ellipse cx="1210" cy="248" rx="23" ry="8" stroke="#AA8CFB"/><path d="M1187 248 v30 q23 31 46 0 v-30" stroke="#AA8CFB"/>
+ <ellipse cx="1401" cy="188" rx="24" ry="8" stroke="#FFC25C"/><path d="M1377 188 v31 q24 33 48 0 v-31" stroke="#FFC25C"/>
+</g>
+<g fill="#F9FAFE" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="750" text-anchor="middle">
+ <text x="1021" y="281">RAW</text><text x="1210" y="330">CLEAN</text><text x="1400" y="268">READY</text>
+</g>
+<g fill="#BAC9EE" font-family="Consolas,Menlo,monospace" font-size="19" text-anchor="middle">
+ <text x="1021" y="340">ingest</text><text x="1210" y="388">validate</text><text x="1400" y="324">model</text>
+</g>
+<g stroke="#80E7F6" stroke-width="2.4" stroke-linecap="round"><path d="M929 90 v14 m-7 -7 h14"/><path d="M1110 84 v14 m-7 -7 h14"/><path d="M1472 353 v14 m-7 -7 h14"/><path d="M1026 379 v14 m-7 -7 h14"/></g>
+</svg>
