@@ -94,15 +94,15 @@ Not every learning session becomes a commit, but here's where my experiments tak
 
 ### 🎮 Math Arcade — one puzzle at a time
 
-<a href="https://jg0901.github.io/jg0901/" title="Play Jemma's Math Arcade — eight levels">
-  <img src="./assets/math-arcade-launch.svg" width="100%" alt="Play Math Arcade: one puzzle card, eight levels, from Fibonacci patterns to modular arithmetic." />
+<a href="https://jg0901.github.io/jg0901/" title="Play Jemma's Math Arcade — fifteen levels">
+  <img src="./assets/math-arcade-launch.svg" width="100%" alt="Play Math Arcade: one puzzle card, fifteen levels, from Fibonacci patterns to modular arithmetic." />
 </a>
 
 <div align="center">
 
 **[▶ PLAY THE MATH ARCADE](https://jg0901.github.io/jg0901/)**
 
-<sub>Enter an answer → unlock the next level. 8 challenges · hints · saved progress.</sub>
+<sub>Enter an answer → unlock the next level. 15 challenges · nickname entry · hints · leaderboard.</sub>
 
 </div>
 
