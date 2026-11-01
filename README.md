@@ -19,7 +19,7 @@
 
 ```text
 $ whoami
-  Jemma — aspiring Data Engineer, math educator, lifelong learner
+  Jemma — aspiring Data Engineer, Math Educator, lifelong learner
 
 $ current_mission
   Build pipelines that don't just run — they can be trusted.
@@ -86,8 +86,8 @@ Not every learning session becomes a commit, but here's where my experiments tak
 
 | 🧪 Current lab quests | What I'm practicing |
 |:--|:--|
-| 🔧 **Pipeline reliability** | Data checks, testing and simpler workflows |
-| 🚀 **Ship with confidence** | Git, CI/CD and deployment patterns |
+| 🔧 **Pipeline reliability** | Data checks, testing, and simpler workflows |
+| 🚀 **Ship with confidence** | Git, CI/CD, and deployment patterns |
 | 🧠 **Math side quests** | Probability, simulation, and problem solving |
 
 **The green squares:** GitHub's live contribution calendar is just below this profile README. It reflects qualifying GitHub activity, not every hour of learning.
