@@ -166,7 +166,46 @@ FROM days;
 
 </details>
 
-<sub>🧪 Math Arcade: five puzzles and counting. The sequences are examples of possible rules; finite data can fit multiple patterns.</sub>
+<div align="center">
+  <img src="./assets/math-arcade-006.svg" alt="Math Arcade Level 006: Base-Seven Lock. Find the next value." width="100%" />
+</div>
+
+<details>
+<summary><strong>🔓 Reveal solution — Level 006</strong></summary>
+
+**Answer: 121₇.** Treat the sequence as numbers written in **base 7**. Their decimal values are `1, 4, 9, 16, 25, 36, 49` — perfect squares. Next is `64₁₀ = 121₇`.
+
+*Why this works:* In base 7, `121` means `1×7² + 2×7 + 1 = 64`.
+
+</details>
+
+<div align="center">
+  <img src="./assets/math-arcade-007.svg" alt="Math Arcade Level 007: Modular Feedback. Find the next value." width="100%" />
+</div>
+
+<details>
+<summary><strong>🔓 Reveal solution — Level 007</strong></summary>
+
+**Answer: 14.** A fitting recurrence is **aₙ₊₁ ≡ 3aₙ + 2 (mod 17)**. For example, after 5 comes `(3×5+2) mod 17 = 0`. After 4 comes **`(3×4+2) mod 17 = 14`**.
+
+*Why this works:* The modulo operation wraps values back into the set 0–16.
+
+</details>
+
+<div align="center">
+  <img src="./assets/math-arcade-008.svg" alt="Math Arcade Level 008: Gray-Code Transmitter. Find the next value." width="100%" />
+</div>
+
+<details>
+<summary><strong>🔓 Reveal solution — Level 008</strong></summary>
+
+**Answer: 1101.** This is the 4-bit **binary-reflected Gray code** sequence. Each neighboring code differs in exactly one bit. For decimal `n`, Gray code is `n XOR (n >> 1)`. At `n = 9`: `1001 XOR 0100 = 1101`.
+
+*Why this works:* An example of bitwise reasoning, useful in digital systems and coding theory.
+
+</details>
+
+<sub>🧪 Eight puzzles and counting. Pattern puzzles may admit more than one valid rule; each solution specifies an intended rule.</sub>
 
 ### 🪄 A little more about me
 
