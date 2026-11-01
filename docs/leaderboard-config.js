@@ -1,7 +1,7 @@
-/* Optional shared leaderboard settings. See ../LEADERBOARD_SETUP.md.
-   Only the PUBLIC Supabase project URL and PUBLISHABLE key belong here.
-   NEVER place a secret/service_role key in GitHub Pages source. */
+/* Public project URL and Supabase publishable key only.
+   Access is restricted using Postgres grants and RLS.
+   Never commit service-role or secret keys here. */
 window.MATH_ARCADE_BACKEND = {
-  url: "",
-  publishableKey: ""
+  url: "https://xwqzezvnoimfbyvonsvq.supabase.co",
+  publishableKey: "sb_publishable_4_6VHx-_vAuGsZNVqVRjUA_ufigenxc"
 };
