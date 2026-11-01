@@ -114,7 +114,59 @@ FROM days;
 
 </details>
 
-<sub>🧩 More math puzzles may appear here as the lab grows.</sub>
+<div align="center">
+  <img src="./assets/math-arcade-002.svg" alt="Math Arcade Level 002: Fibonacci in Disguise. Find the missing term." width="100%" />
+</div>
+
+<details>
+<summary><strong>🔓 Reveal solution — Level 002</strong></summary>
+
+**Answer: 86.** The differences are **3, 5, 8, 13, 21**: consecutive Fibonacci numbers. The next difference is **34**. Therefore `52 + 34 = 86`.
+
+*Pattern tip:* Look for a pattern in successive differences.
+
+</details>
+
+<div align="center">
+  <img src="./assets/math-arcade-003.svg" alt="Math Arcade Level 003: Two Streams, One Log. Find the missing term." width="100%" />
+</div>
+
+<details>
+<summary><strong>🔓 Reveal solution — Level 003</strong></summary>
+
+**Answer: 32.** Split by position. Odd positions: **1, 1, 2, 3, 5** (Fibonacci). Even positions: **2, 4, 8, 16, 32** (powers of two). Position 10 is even, so the answer is **32**.
+
+*Pattern tip:* Two interleaved series can disguise simple rules.
+
+</details>
+
+<div align="center">
+  <img src="./assets/math-arcade-004.svg" alt="Math Arcade Level 004: Tribonacci Engine. Find the missing term." width="100%" />
+</div>
+
+<details>
+<summary><strong>🔓 Reveal solution — Level 004</strong></summary>
+
+**Answer: 44.** Each term is the sum of the previous **three** terms: `1 + 1 + 2 = 4`, `1 + 2 + 4 = 7`, and so on. The next is `7 + 13 + 24 = 44`.
+
+*Pattern tip:* A third-order recurrence instead of the usual Fibonacci recurrence.
+
+</details>
+
+<div align="center">
+  <img src="./assets/math-arcade-005.svg" alt="Math Arcade Level 005: Read the Data. Find the missing term." width="100%" />
+</div>
+
+<details>
+<summary><strong>🔓 Reveal solution — Level 005</strong></summary>
+
+**Answer: 312211.** The **look-and-say sequence** describes consecutive groups of digits. `111221` is *three 1s, two 2s, one 1*, producing **312211**.
+
+*Pattern tip:* Some number puzzles are really about strings, not arithmetic.
+
+</details>
+
+<sub>🧪 Math Arcade: five puzzles and counting. The sequences are examples of possible rules; finite data can fit multiple patterns.</sub>
 
 ### 🪄 A little more about me
 
