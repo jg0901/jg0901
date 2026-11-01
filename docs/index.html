@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10182d">
-<meta name="description" content="Jemma's Math Arcade: an eight-level sequence puzzle game featuring Fibonacci, modular arithmetic, base seven, and Gray codes.">
+<meta name="description" content="Jemma's Math Arcade: a fifteen-level progressive mathematical puzzle game featuring Fibonacci, modular arithmetic, base seven, and Gray codes.">
 <title>Jemma's Math Arcade · Data Lab</title>
 <style>
 :root { color-scheme:dark; --bg:#101629;--panel:#18213c;--line:#39466b;--white:#f7f9ff;--muted:#acb9d8;--mint:#72ebda;--violet:#b29bff;--rose:#ffa7b5 }
@@ -43,15 +43,55 @@ button:hover{filter:brightness(1.12)}button:focus-visible{outline:3px solid var(
 .hidden{display:none!important}
 @media(max-width:580px){body{padding:18px 12px}.topbar{margin-bottom:28px}.card-top,.main{padding-left:18px;padding-right:18px}.progress{padding:0 18px}.footer{padding:14px 18px}.answer-row{flex-direction:column}.tile{flex-basis:64px;height:62px}.intro{font-size:14px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* v2: player identity, scoreboard and 15-level game */
+.intro-card{padding:30px;margin-bottom:23px}
+.intro-card h2{margin:0 0 10px;font-size:26px}
+.intro-card p{color:var(--muted);line-height:1.65}
+.intro-card form{display:grid;gap:13px;max-width:450px}
+.intro-card label{font-size:14px;font-weight:700;color:#dae5f6}
+.intro-card .name-btn{width:fit-content}
+.intro-card .muted{font-size:13px;margin-bottom:0}
+.name-error{color:var(--rose);font-size:13px;min-height:18px;margin:0}
+#timer{color:var(--mint);font-family:ui-monospace,Consolas,monospace;font-weight:750}
+#player-label{font-weight:700;color:#d9d2fb}
+.board{margin-top:25px;padding:22px 27px}
+.board header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.board h2{margin:0;font-size:23px}
+.board .board-scope{font-size:12px;color:var(--mint);border:1px solid #4d6885;border-radius:14px;padding:7px 12px}
+.board p{color:var(--muted);font-size:13px;line-height:1.6}
+#leaderboard-list{list-style:none;margin:18px 0 18px;padding:0;display:grid;gap:7px}
+.score-row{display:grid;grid-template-columns:35px minmax(0,1fr) auto;gap:13px;align-items:center;border:1px solid #364568;border-radius:10px;padding:12px 13px;background:#1b2945}
+.score-rank{font-size:14px;color:#75dcd7;font-weight:750;font-family:ui-monospace,Consolas,monospace}
+.score-player{font-weight:700;overflow-wrap:anywhere}
+.score-detail{color:#c1cce0;font:12px ui-monospace,Consolas,monospace;white-space:nowrap}
+.empty-score{color:var(--muted);padding:16px;border:1px dashed var(--line);border-radius:10px}
+.score-button{margin-top:16px}
+#score-feedback{min-height:22px;color:var(--mint);font-size:13px}
+#result-stats{color:var(--mint);font-weight:700}
+#game-shell .footer{gap:12px}
+@media(max-width:580px){.intro-card{padding:22px 18px}.board{padding:18px}.score-row{grid-template-columns:25px minmax(0,1fr)}.score-detail{grid-column:2}.actionbar{gap:7px}}
+
 </style>
 </head>
 <body>
 <div class="container">
   <header class="topbar"><a class="brand" href="https://github.com/jg0901"><span class="logo" aria-hidden="true">jg.</span> JEMMA'S DATA LAB</a><a class="back" href="https://github.com/jg0901">← Back to GitHub profile</a></header>
-  <p class="kicker">One puzzle at a time · Eight levels</p>
+  <p class="kicker">One puzzle at a time · Fifteen levels</p>
   <h1>Math <span>Arcade.</span></h1>
   <p class="intro">Decode the pattern, enter your answer, and unlock the next challenge.<br>From familiar sequences to number bases, recurrence relations, and bits.</p>
-  <section class="card" aria-label="Interactive mathematical pattern game">
+  <section class="card intro-card" id="welcome" aria-label="Choose your arcade name">
+    <h2>Choose your player name 🎮</h2>
+    <p>Pick a nickname to start solving mathematical patterns. Only completed runs can be saved to the leaderboard.</p>
+    <form id="name-form">
+      <label for="nickname">Your arcade nickname</label>
+      <input id="nickname" type="text" minlength="2" maxlength="24" autocomplete="nickname" placeholder="e.g. Pattern Wizard" required />
+      <p id="name-error" class="name-error" role="alert"></p>
+      <button type="submit" class="name-btn">START THE ARCADE →</button>
+    </form>
+    <p class="muted">Progress and personal scores are saved on this device. If a public leaderboard is enabled, scores appear there only when you choose to submit them.</p>
+  </section>
+  <section class="card hidden" id="game-shell" aria-label="Interactive mathematical pattern game">
     <div class="card-top"><span class="eyebrow">◈ PATTERN DETECTIVE</span><span class="level" id="level">LEVEL 001 / 008</span></div>
     <div class="progress" id="progress" aria-label="Game progress"></div>
     <div class="main" id="game">
@@ -64,59 +104,38 @@ button:hover{filter:brightness(1.12)}button:focus-visible{outline:3px solid var(
       </form>
       <p class="feedback" role="status" aria-live="polite" id="feedback"></p>
       <div class="hint hidden" id="hint"></div>
-      <div class="actionbar"><button class="ghost" type="button" id="hint-btn">☼ Reveal a hint</button><button class="ghost" type="button" id="back-btn">← Previous level</button></div>
+      <div class="actionbar">
+        <button class="ghost" type="button" id="hint-btn">☼ Reveal a hint</button>
+        <button class="ghost" type="button" id="back-btn">← Previous level</button>
+        <button class="ghost" type="button" id="next-btn" disabled>Next solved level →</button>
+      </div>
     </div>
-    <div class="complete hidden" id="complete" aria-live="polite"><div class="icon">✦</div><h2>All pipelines restored!</h2><p>You solved eight puzzles, from Fibonacci to modular arithmetic and Gray codes.<br>Nice work, pattern detective.</p><button type="button" id="replay">RESTART THE ARCADE ↻</button></div>
-    <footer class="footer"><span id="solved">0 / 8 LEVELS UNLOCKED</span><button class="ghost" type="button" id="reset">Reset progress</button></footer>
+    <div class="complete hidden" id="complete" aria-live="polite">
+      <div class="icon">✦</div>
+      <h2>All 15 levels cleared!</h2>
+      <p>From Fibonacci to Catalan numbers, modular arithmetic, and the Chinese remainder theorem.<br>Excellent work, pattern detective.</p>
+      <p id="result-stats"></p>
+      <button class="score-button" type="button" id="submit-score">SAVE MY SCORE</button>
+      <p id="score-feedback" role="status"></p>
+      <br><button class="ghost" type="button" id="replay">↻ Play again</button>
+    </div>
+    <footer class="footer">
+      <span id="player-label">PLAYER: —</span>
+      <span id="solved">0 / 15 COMPLETED</span>
+      <span id="timer" aria-label="Elapsed time">0:00:00</span>
+      <button class="ghost" type="button" id="change-player">Change player</button>
+      <button class="ghost" type="button" id="reset">Reset run</button>
+    </footer>
   </section>
-  <p class="footnote">Every puzzle has an intended rule; short number sequences may admit other valid mathematical patterns.<br>Progress is saved in this browser when local storage is available.</p>
+  <section class="card board" aria-label="Leaderboard">
+    <header><h2>🏆 Leaderboard</h2><span class="board-scope" id="board-scope">This browser</span></header>
+    <p id="board-status">Fastest completions win; fewer hints break a tie. Nicknames are visible when a shared leaderboard is enabled.</p>
+    <ol id="leaderboard-list"></ol>
+    <button class="ghost" type="button" id="board-refresh">↻ Refresh leaderboard</button>
+  </section>
+  <p class="footnote">Short sequences may fit multiple mathematical rules. Hints explain the intended patterns.<br>This is a casual puzzle game, not a verified competitive assessment.</p>
 </div>
-<script>
-"use strict";
-const puzzles = [
-{title:"The Checksum Mystery",description:"A data sequence is missing its final value. Can you spot the rule?",seq:["3","8","15","24","35","?"],answers:["48"],difficulty:"★★☆",hint:"Look at the successive differences: 5, 7, 9, 11, ..."},
-{title:"Fibonacci in Disguise",description:"The differences between successive values contain a familiar pattern.",seq:["2","5","10","18","31","52","?"],answers:["86"],difficulty:"★★★",hint:"The differences are 3, 5, 8, 13, 21, ..."},
-{title:"Two Streams, One Log",description:"Two different rules have been woven into a single sequence.",seq:["1","2","1","4","2","8","3","16","5","?"],answers:["32"],difficulty:"★★★★",hint:"Read the terms in odd positions and even positions separately."},
-{title:"Tribonacci Engine",description:"A recurrence needs more memory than the usual Fibonacci sequence.",seq:["1","1","2","4","7","13","24","?"],answers:["44"],difficulty:"★★★★",hint:"Each new term is the sum of the previous THREE terms."},
-{title:"Read the Data",description:"The next term isn't obtained by arithmetic. Try reading the current one aloud.",seq:["1","11","21","1211","111221","?"],answers:["312211"],difficulty:"★★★★★",hint:"Group consecutive identical digits. The last term describes three 1s, two 2s, and one 1."},
-{title:"Base-Seven Lock",description:"The digits are hiding a familiar sequence in a different number base.",seq:["1","4","12","22","34","51","100","?"],answers:["121","1217","121₇","121_7"],difficulty:"★★★★★",hint:"Convert these base-7 values into base 10. They are perfect squares. Give the answer in base 7."},
-{title:"Modular Feedback",description:"A linear recurrence wraps around a finite system of residues.",seq:["1","5","0","2","8","9","12","4","?"],answers:["14"],difficulty:"★★★★★",hint:"Try the recurrence a(next) = (3 × a(current) + 2) mod 17."},
-{title:"Gray-Code Transmitter",description:"A four-bit message follows a special order where only one bit changes at a time.",seq:["0000","0001","0011","0010","0110","0111","0101","0100","1100","?"],answers:["1101"],difficulty:"★★★★★",hint:"This is binary-reflected Gray code. At index n, compute n XOR (n >> 1)."}
-];
-const $ = id => document.getElementById(id);
-const storageKey = "jemma-math-arcade-v1";
-let current = 0, unlocked = 0, transitioning = false;
-try { const saved = JSON.parse(localStorage.getItem(storageKey) || "{}"); if(Number.isInteger(saved.unlocked)) unlocked=Math.min(8,Math.max(0,saved.unlocked)); if(Number.isInteger(saved.current))current=Math.min(7,Math.max(0,saved.current)); if(current>unlocked)current=Math.min(unlocked,7); } catch(_e) {}
-function save() {try{localStorage.setItem(storageKey, JSON.stringify({current,unlocked}))}catch(_e){}}
-function setFeedback(message,cls){const e=$("feedback");e.textContent=message;e.className="feedback"+(cls?" "+cls:"")}
-function render(){
- transitioning=false;
- if(unlocked===8 && current===7){$("game").classList.add("hidden");$("complete").classList.remove("hidden")}else{$("game").classList.remove("hidden");$("complete").classList.add("hidden")}
- const p=puzzles[current];$("level").textContent="LEVEL "+String(current+1).padStart(3,"0")+" / 008";
- $("title").textContent=p.title;$("difficulty").textContent=p.difficulty;$("description").textContent=p.description;
- $("numbers").replaceChildren();
- p.seq.forEach((v,i)=>{const tile=document.createElement("span");tile.className="tile"+(i===p.seq.length-1?" missing":"");tile.textContent=v;$("numbers").append(tile)});
- $("progress").replaceChildren();for(let i=0;i<8;i++){const seg=document.createElement("span");seg.className="segment"+(i<unlocked?" done":i===current?" current":"");$("progress").append(seg)}
- $("solved").textContent=unlocked+" / 8 LEVELS COMPLETED";
- $("answer").value="";$("answer").disabled=false;$("submit").disabled=false;$("hint").classList.add("hidden");$("hint").textContent="";$("hint-btn").textContent="☼ Reveal a hint";$("back-btn").disabled=current===0;
- setFeedback("","");save();
-}
-function normalize(s){return String(s).trim().toLowerCase().replace(/\s+/g,"")}
-$("quiz").addEventListener("submit",e=>{
- e.preventDefault();if(transitioning)return;
- const input=normalize($("answer").value);if(!input){setFeedback("Enter a value to check your pattern.","error");return}
- const p=puzzles[current];
- if(p.answers.some(x=>normalize(x)===input)){
-   transitioning=true;setFeedback("✓ Correct! Unlocking the next level…","correct");$("answer").disabled=true;$("submit").disabled=true;
-   unlocked=Math.max(unlocked,current+1);save();
-   window.setTimeout(()=>{if(current===7){unlocked=8;}else{current++;}render();$("answer").focus()},950);
- }else{setFeedback("Not quite — try a different pattern. You can reveal a hint below.","error");$("answer").select()}
-});
-$("hint-btn").addEventListener("click",()=>{const h=$("hint");const show=h.classList.contains("hidden");h.textContent=puzzles[current].hint;h.classList.toggle("hidden",!show);$("hint-btn").textContent=show?"Hide hint":"☼ Reveal a hint"});
-$("back-btn").addEventListener("click",()=>{if(transitioning||current===0)return;current--;render()});
-$("reset").addEventListener("click",()=>{if(transitioning)return; if(!window.confirm("Reset all eight puzzle levels?"))return;current=0;unlocked=0;render()});
-$("replay").addEventListener("click",()=>{current=0;unlocked=0;render();$("answer").focus()});
-render();
-</script>
+<script src="./leaderboard-config.js" defer></script>
+<script src="./arcade-v2.js" defer></script>
 </body>
 </html>
