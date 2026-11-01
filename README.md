@@ -92,39 +92,29 @@ Not every learning session becomes a commit, but here's where my experiments tak
 
 **The green squares:** GitHub's live contribution calendar is just below this profile README. It reflects qualifying GitHub activity, not every hour of learning.
 
-### 🎮 Math Arcade — Puzzle #001
+### 🎮 Math Arcade
 
-> **The checksum mystery** · Difficulty: ★★☆  
-> A pipeline produces the following sequence of daily row checksums:
->
-> `3, 8, 15, 24, 35, ?`
->
-> Find the missing number **and** the rule. Bonus: can you express the rule as SQL?
+<div align="center">
+  <img src="./assets/math-arcade-001.svg" alt="Math Arcade Level 001: The Checksum Mystery. Sequence: 3, 8, 15, 24, 35, question mark." width="100%" />
+</div>
 
 <details>
-<summary><strong>🔓 Reveal the solution (no peeking!)</strong></summary>
+<summary><strong>🔓 Unlock the answer — Puzzle #001</strong></summary>
 
-The next checksum is **48**.
+**Answer: 48.** The differences are `5, 7, 9, 11, 13`, so the next number is `35 + 13 = 48`.
 
-The successive differences are `5, 7, 9, 11, 13`, so the next value is `35 + 13 = 48`.
-
-For day number `n = 1, 2, 3, …`, the rule is `n * (n + 2)`.
+For day `n = 1, 2, 3, …`, the rule is `n * (n + 2)`.
 
 ```sql
-SELECT day_number, day_number * (day_number + 2) AS checksum
+SELECT day_number, day_number * (day_number + 2) AS puzzle_value
 FROM days;
 ```
 
-*Data engineer's bonus:* a predictable checksum can catch a mismatch, but a real production data-quality check needs to be defined around the actual data and invariants.
+**Data quality footnote:** This is a number-pattern puzzle, not a production checksum. Actual checksums depend on record contents and require a defined validation method.
 
 </details>
 
-<details>
-<summary><strong>🕹️ Next arcade idea: Pipeline Panic</strong></summary>
-
-A tiny browser game where you repair a broken pipeline by spotting duplicate keys, fixing missing values, and solving number puzzles. A future **GitHub Pages** side project, not a finished game yet.
-
-</details>
+<sub>🧩 More math puzzles may appear here as the lab grows.</sub>
 
 ### 🪄 A little more about me
 
