@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10182d">
+<meta name="description" content="Jemma's Math Arcade: an eight-level sequence puzzle game featuring Fibonacci, modular arithmetic, base seven, and Gray codes.">
+<title>Jemma's Math Arcade · Data Lab</title>
+<style>
+:root { color-scheme:dark; --bg:#101629;--panel:#18213c;--line:#39466b;--white:#f7f9ff;--muted:#acb9d8;--mint:#72ebda;--violet:#b29bff;--rose:#ffa7b5 }
+*{box-sizing:border-box} html{min-height:100%} body{margin:0;background:radial-gradient(circle at 80% 10%,#252453 0,transparent 35%),radial-gradient(circle at 0% 75%,#13384a 0,transparent 30%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--white);min-height:100vh;padding:32px 20px}
+.container{width:min(100%,910px);margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:35px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--white);font-weight:800;letter-spacing:.035em;text-decoration:none}.logo{display:grid;place-items:center;background:#7157da;border-radius:12px;width:41px;height:41px;font-weight:900;font-size:20px}.back{color:var(--muted);font-size:14px;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:9px 13px}.back:hover,.back:focus-visible{color:var(--white);border-color:var(--mint)}
+.kicker{color:var(--mint);text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:.19em;margin:0 0 9px}
+h1{font-size:clamp(36px,7vw,60px);line-height:1.08;margin:0 0 10px;letter-spacing:-.05em}h1 span{color:var(--violet)}
+.intro{color:var(--muted);font-size:16px;line-height:1.65;margin:0 0 29px}
+.card{background:linear-gradient(145deg,#1c2442,#172137 65%,#16293a);border:1px solid #4a4e7b;border-radius:21px;box-shadow:0 24px 70px #03071880;overflow:hidden}
+.card-top{padding:26px 30px 22px;display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.eyebrow{font-weight:800;color:var(--mint);font-size:13px;letter-spacing:.16em}
+.level{padding:9px 13px;border:1px solid #7567b0;background:#2c2852;border-radius:30px;color:#e7dfff;font-size:12px;font-weight:800;letter-spacing:.05em}
+.progress{display:grid;grid-template-columns:repeat(8,1fr);gap:7px;padding:0 30px}
+.segment{height:7px;border-radius:8px;background:#35405d;transition:background .3s}.segment.done{background:#68d7ce}.segment.current{background:#b39aff}
+.main{padding:27px 30px 28px} .headerrow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap} h2{font-size:clamp(23px,4vw,31px);margin:0;letter-spacing:-.025em}.difficulty{font-size:13px;color:#f3d78f;letter-spacing:1px}
+.description{color:#bfcce7;margin:12px 0 26px;line-height:1.6}
+.numbers{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 20px;justify-content:center}
+.tile{flex:1 1 75px;min-width:0;max-width:122px;background:#2a3552;border:1px solid #50607e;border-radius:11px;display:grid;place-items:center;height:75px;font:700 clamp(18px,3vw,29px)/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:nowrap;padding:5px;color:#fff}
+.tile.missing{background:#13414c;border:2px solid #70ebdf;color:#89ffea}
+.form-label{display:block;color:#dde5f7;font-weight:700;margin:27px 0 11px}
+.answer-row{display:flex;gap:11px;align-items:stretch}
+input{min-width:0;flex:1;font:600 21px ui-monospace,Consolas,monospace;border:1px solid #5e7193;background:#0e1930;border-radius:11px;padding:13px 16px;color:#fff;outline:none}
+input:focus{border-color:var(--mint);box-shadow:0 0 0 3px #72ebda24} input::placeholder{color:#7182a3}
+button{cursor:pointer;font:700 14px system-ui,sans-serif;border:1px solid #9181f0;border-radius:11px;padding:12px 18px;background:linear-gradient(120deg,#927af1,#6e5bc8);color:white}
+button:hover{filter:brightness(1.12)}button:focus-visible{outline:3px solid var(--mint);outline-offset:3px}button:disabled{cursor:wait;opacity:.65;filter:none}
+.actionbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:13px;margin-top:19px}
+.ghost{background:transparent;border-color:#58688b;color:#d8e0f6;font-weight:600;font-size:13px;padding:9px 14px}.ghost:disabled{opacity:.3;cursor:default}
+.hint{margin-top:18px;background:#273753;border:1px solid #516c89;border-radius:9px;padding:12px 15px;color:#dceef7;font-size:14px;line-height:1.6}
+.feedback{min-height:24px;margin:15px 0 0;font-size:14px;font-weight:650;line-height:1.5;color:var(--muted)}
+.feedback.error{color:var(--rose)}.feedback.correct{color:var(--mint)}
+.footer{border-top:1px solid #424d6d;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 30px;color:#96abc9;font-size:12px;flex-wrap:wrap}
+.footnote{text-align:center;color:#8f9ebd;font-size:13px;line-height:1.6;margin:22px 0}
+.complete{text-align:center;padding:24px 15px 35px}.complete .icon{font-size:54px;margin-bottom:12px}.complete p{color:var(--muted);line-height:1.7}.complete button{margin-top:9px}
+.hidden{display:none!important}
+@media(max-width:580px){body{padding:18px 12px}.topbar{margin-bottom:28px}.card-top,.main{padding-left:18px;padding-right:18px}.progress{padding:0 18px}.footer{padding:14px 18px}.answer-row{flex-direction:column}.tile{flex-basis:64px;height:62px}.intro{font-size:14px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="topbar"><a class="brand" href="https://github.com/jg0901"><span class="logo" aria-hidden="true">jg.</span> JEMMA'S DATA LAB</a><a class="back" href="https://github.com/jg0901">← Back to GitHub profile</a></header>
+  <p class="kicker">One puzzle at a time · Eight levels</p>
+  <h1>Math <span>Arcade.</span></h1>
+  <p class="intro">Decode the pattern, enter your answer, and unlock the next challenge.<br>From familiar sequences to number bases, recurrence relations, and bits.</p>
+  <section class="card" aria-label="Interactive mathematical pattern game">
+    <div class="card-top"><span class="eyebrow">◈ PATTERN DETECTIVE</span><span class="level" id="level">LEVEL 001 / 008</span></div>
+    <div class="progress" id="progress" aria-label="Game progress"></div>
+    <div class="main" id="game">
+      <div class="headerrow"><h2 id="title">The Checksum Mystery</h2><span class="difficulty" id="difficulty" aria-label="Difficulty"></span></div>
+      <p class="description" id="description"></p>
+      <div class="numbers" id="numbers" aria-label="Number sequence"></div>
+      <form id="quiz" novalidate>
+        <label class="form-label" for="answer">What's the missing value?</label>
+        <div class="answer-row"><input id="answer" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter your answer…" aria-describedby="feedback" required><button type="submit" id="submit">CHECK ANSWER ↗</button></div>
+      </form>
+      <p class="feedback" role="status" aria-live="polite" id="feedback"></p>
+      <div class="hint hidden" id="hint"></div>
+      <div class="actionbar"><button class="ghost" type="button" id="hint-btn">☼ Reveal a hint</button><button class="ghost" type="button" id="back-btn">← Previous level</button></div>
+    </div>
+    <div class="complete hidden" id="complete" aria-live="polite"><div class="icon">✦</div><h2>All pipelines restored!</h2><p>You solved eight puzzles, from Fibonacci to modular arithmetic and Gray codes.<br>Nice work, pattern detective.</p><button type="button" id="replay">RESTART THE ARCADE ↻</button></div>
+    <footer class="footer"><span id="solved">0 / 8 LEVELS UNLOCKED</span><button class="ghost" type="button" id="reset">Reset progress</button></footer>
+  </section>
+  <p class="footnote">Every puzzle has an intended rule; short number sequences may admit other valid mathematical patterns.<br>Progress is saved in this browser when local storage is available.</p>
+</div>
+<script>
+"use strict";
+const puzzles = [
+{title:"The Checksum Mystery",description:"A data sequence is missing its final value. Can you spot the rule?",seq:["3","8","15","24","35","?"],answers:["48"],difficulty:"★★☆",hint:"Look at the successive differences: 5, 7, 9, 11, ..."},
+{title:"Fibonacci in Disguise",description:"The differences between successive values contain a familiar pattern.",seq:["2","5","10","18","31","52","?"],answers:["86"],difficulty:"★★★",hint:"The differences are 3, 5, 8, 13, 21, ..."},
+{title:"Two Streams, One Log",description:"Two different rules have been woven into a single sequence.",seq:["1","2","1","4","2","8","3","16","5","?"],answers:["32"],difficulty:"★★★★",hint:"Read the terms in odd positions and even positions separately."},
+{title:"Tribonacci Engine",description:"A recurrence needs more memory than the usual Fibonacci sequence.",seq:["1","1","2","4","7","13","24","?"],answers:["44"],difficulty:"★★★★",hint:"Each new term is the sum of the previous THREE terms."},
+{title:"Read the Data",description:"The next term isn't obtained by arithmetic. Try reading the current one aloud.",seq:["1","11","21","1211","111221","?"],answers:["312211"],difficulty:"★★★★★",hint:"Group consecutive identical digits. The last term describes three 1s, two 2s, and one 1."},
+{title:"Base-Seven Lock",description:"The digits are hiding a familiar sequence in a different number base.",seq:["1","4","12","22","34","51","100","?"],answers:["121","1217","121₇","121_7"],difficulty:"★★★★★",hint:"Convert these base-7 values into base 10. They are perfect squares. Give the answer in base 7."},
+{title:"Modular Feedback",description:"A linear recurrence wraps around a finite system of residues.",seq:["1","5","0","2","8","9","12","4","?"],answers:["14"],difficulty:"★★★★★",hint:"Try the recurrence a(next) = (3 × a(current) + 2) mod 17."},
+{title:"Gray-Code Transmitter",description:"A four-bit message follows a special order where only one bit changes at a time.",seq:["0000","0001","0011","0010","0110","0111","0101","0100","1100","?"],answers:["1101"],difficulty:"★★★★★",hint:"This is binary-reflected Gray code. At index n, compute n XOR (n >> 1)."}
+];
+const $ = id => document.getElementById(id);
+const storageKey = "jemma-math-arcade-v1";
+let current = 0, unlocked = 0, transitioning = false;
+try { const saved = JSON.parse(localStorage.getItem(storageKey) || "{}"); if(Number.isInteger(saved.unlocked)) unlocked=Math.min(8,Math.max(0,saved.unlocked)); if(Number.isInteger(saved.current))current=Math.min(7,Math.max(0,saved.current)); if(current>unlocked)current=Math.min(unlocked,7); } catch(_e) {}
+function save() {try{localStorage.setItem(storageKey, JSON.stringify({current,unlocked}))}catch(_e){}}
+function setFeedback(message,cls){const e=$("feedback");e.textContent=message;e.className="feedback"+(cls?" "+cls:"")}
+function render(){
+ transitioning=false;
+ if(unlocked===8 && current===7){$("game").classList.add("hidden");$("complete").classList.remove("hidden")}else{$("game").classList.remove("hidden");$("complete").classList.add("hidden")}
+ const p=puzzles[current];$("level").textContent="LEVEL "+String(current+1).padStart(3,"0")+" / 008";
+ $("title").textContent=p.title;$("difficulty").textContent=p.difficulty;$("description").textContent=p.description;
+ $("numbers").replaceChildren();
+ p.seq.forEach((v,i)=>{const tile=document.createElement("span");tile.className="tile"+(i===p.seq.length-1?" missing":"");tile.textContent=v;$("numbers").append(tile)});
+ $("progress").replaceChildren();for(let i=0;i<8;i++){const seg=document.createElement("span");seg.className="segment"+(i<unlocked?" done":i===current?" current":"");$("progress").append(seg)}
+ $("solved").textContent=unlocked+" / 8 LEVELS COMPLETED";
+ $("answer").value="";$("answer").disabled=false;$("submit").disabled=false;$("hint").classList.add("hidden");$("hint").textContent="";$("hint-btn").textContent="☼ Reveal a hint";$("back-btn").disabled=current===0;
+ setFeedback("","");save();
+}
+function normalize(s){return String(s).trim().toLowerCase().replace(/\s+/g,"")}
+$("quiz").addEventListener("submit",e=>{
+ e.preventDefault();if(transitioning)return;
+ const input=normalize($("answer").value);if(!input){setFeedback("Enter a value to check your pattern.","error");return}
+ const p=puzzles[current];
+ if(p.answers.some(x=>normalize(x)===input)){
+   transitioning=true;setFeedback("✓ Correct! Unlocking the next level…","correct");$("answer").disabled=true;$("submit").disabled=true;
+   unlocked=Math.max(unlocked,current+1);save();
+   window.setTimeout(()=>{if(current===7){unlocked=8;}else{current++;}render();$("answer").focus()},950);
+ }else{setFeedback("Not quite — try a different pattern. You can reveal a hint below.","error");$("answer").select()}
+});
+$("hint-btn").addEventListener("click",()=>{const h=$("hint");const show=h.classList.contains("hidden");h.textContent=puzzles[current].hint;h.classList.toggle("hidden",!show);$("hint-btn").textContent=show?"Hide hint":"☼ Reveal a hint"});
+$("back-btn").addEventListener("click",()=>{if(transitioning||current===0)return;current--;render()});
+$("reset").addEventListener("click",()=>{if(transitioning)return; if(!window.confirm("Reset all eight puzzle levels?"))return;current=0;unlocked=0;render()});
+$("replay").addEventListener("click",()=>{current=0;unlocked=0;render();$("answer").focus()});
+render();
+</script>
+</body>
+</html>
