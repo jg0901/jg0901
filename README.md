@@ -92,120 +92,19 @@ Not every learning session becomes a commit, but here's where my experiments tak
 
 **The green squares:** GitHub's live contribution calendar is just below this profile README. It reflects qualifying GitHub activity, not every hour of learning.
 
-### 🎮 Math Arcade
+### 🎮 Math Arcade — one puzzle at a time
+
+<a href="https://jg0901.github.io/jg0901/" title="Play Jemma's Math Arcade — eight levels">
+  <img src="./assets/math-arcade-launch.svg" width="100%" alt="Play Math Arcade: one puzzle card, eight levels, from Fibonacci patterns to modular arithmetic." />
+</a>
 
 <div align="center">
-  <img src="./assets/math-arcade-001.svg" alt="Math Arcade Level 001: The Checksum Mystery. Sequence: 3, 8, 15, 24, 35, question mark." width="100%" />
+
+**[▶ PLAY THE MATH ARCADE](https://jg0901.github.io/jg0901/)**
+
+<sub>Enter an answer → unlock the next level. 8 challenges · hints · saved progress.</sub>
+
 </div>
-
-<details>
-<summary><strong>🔓 Unlock the answer — Puzzle #001</strong></summary>
-
-**Answer: 48.** The differences are `5, 7, 9, 11, 13`, so the next number is `35 + 13 = 48`.
-
-For day `n = 1, 2, 3, …`, the rule is `n * (n + 2)`.
-
-```sql
-SELECT day_number, day_number * (day_number + 2) AS puzzle_value
-FROM days;
-```
-
-**Data quality footnote:** This is a number-pattern puzzle, not a production checksum. Actual checksums depend on record contents and require a defined validation method.
-
-</details>
-
-<div align="center">
-  <img src="./assets/math-arcade-002.svg" alt="Math Arcade Level 002: Fibonacci in Disguise. Find the missing term." width="100%" />
-</div>
-
-<details>
-<summary><strong>🔓 Reveal solution — Level 002</strong></summary>
-
-**Answer: 86.** The differences are **3, 5, 8, 13, 21**: consecutive Fibonacci numbers. The next difference is **34**. Therefore `52 + 34 = 86`.
-
-*Pattern tip:* Look for a pattern in successive differences.
-
-</details>
-
-<div align="center">
-  <img src="./assets/math-arcade-003.svg" alt="Math Arcade Level 003: Two Streams, One Log. Find the missing term." width="100%" />
-</div>
-
-<details>
-<summary><strong>🔓 Reveal solution — Level 003</strong></summary>
-
-**Answer: 32.** Split by position. Odd positions: **1, 1, 2, 3, 5** (Fibonacci). Even positions: **2, 4, 8, 16, 32** (powers of two). Position 10 is even, so the answer is **32**.
-
-*Pattern tip:* Two interleaved series can disguise simple rules.
-
-</details>
-
-<div align="center">
-  <img src="./assets/math-arcade-004.svg" alt="Math Arcade Level 004: Tribonacci Engine. Find the missing term." width="100%" />
-</div>
-
-<details>
-<summary><strong>🔓 Reveal solution — Level 004</strong></summary>
-
-**Answer: 44.** Each term is the sum of the previous **three** terms: `1 + 1 + 2 = 4`, `1 + 2 + 4 = 7`, and so on. The next is `7 + 13 + 24 = 44`.
-
-*Pattern tip:* A third-order recurrence instead of the usual Fibonacci recurrence.
-
-</details>
-
-<div align="center">
-  <img src="./assets/math-arcade-005.svg" alt="Math Arcade Level 005: Read the Data. Find the missing term." width="100%" />
-</div>
-
-<details>
-<summary><strong>🔓 Reveal solution — Level 005</strong></summary>
-
-**Answer: 312211.** The **look-and-say sequence** describes consecutive groups of digits. `111221` is *three 1s, two 2s, one 1*, producing **312211**.
-
-*Pattern tip:* Some number puzzles are really about strings, not arithmetic.
-
-</details>
-
-<div align="center">
-  <img src="./assets/math-arcade-006.svg" alt="Math Arcade Level 006: Base-Seven Lock. Find the next value." width="100%" />
-</div>
-
-<details>
-<summary><strong>🔓 Reveal solution — Level 006</strong></summary>
-
-**Answer: 121₇.** Treat the sequence as numbers written in **base 7**. Their decimal values are `1, 4, 9, 16, 25, 36, 49` — perfect squares. Next is `64₁₀ = 121₇`.
-
-*Why this works:* In base 7, `121` means `1×7² + 2×7 + 1 = 64`.
-
-</details>
-
-<div align="center">
-  <img src="./assets/math-arcade-007.svg" alt="Math Arcade Level 007: Modular Feedback. Find the next value." width="100%" />
-</div>
-
-<details>
-<summary><strong>🔓 Reveal solution — Level 007</strong></summary>
-
-**Answer: 14.** A fitting recurrence is **aₙ₊₁ ≡ 3aₙ + 2 (mod 17)**. For example, after 5 comes `(3×5+2) mod 17 = 0`. After 4 comes **`(3×4+2) mod 17 = 14`**.
-
-*Why this works:* The modulo operation wraps values back into the set 0–16.
-
-</details>
-
-<div align="center">
-  <img src="./assets/math-arcade-008.svg" alt="Math Arcade Level 008: Gray-Code Transmitter. Find the next value." width="100%" />
-</div>
-
-<details>
-<summary><strong>🔓 Reveal solution — Level 008</strong></summary>
-
-**Answer: 1101.** This is the 4-bit **binary-reflected Gray code** sequence. Each neighboring code differs in exactly one bit. For decimal `n`, Gray code is `n XOR (n >> 1)`. At `n = 9`: `1001 XOR 0100 = 1101`.
-
-*Why this works:* An example of bitwise reasoning, useful in digital systems and coding theory.
-
-</details>
-
-<sub>🧪 Eight puzzles and counting. Pattern puzzles may admit more than one valid rule; each solution specifies an intended rule.</sub>
 
 ### 🪄 A little more about me
 
