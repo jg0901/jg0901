@@ -80,6 +80,52 @@ $ favorite_questions
 </tr>
 </table>
 
+### 🌱 Lab activity — small steps, real progress
+
+Not every learning session becomes a commit, but here's where my experiments take shape.
+
+| 🧪 Current lab quests | What I'm practicing |
+|:--|:--|
+| 🔧 **Pipeline reliability** | Data checks, testing and simpler workflows |
+| 🚀 **Ship with confidence** | Git, CI/CD and deployment patterns |
+| 🧠 **Math side quests** | Probability, simulation and problem solving |
+
+**The green squares:** GitHub's live contribution calendar is just below this profile README. It reflects qualifying GitHub activity, not every hour of learning.
+
+### 🎮 Math Arcade — Puzzle #001
+
+> **The checksum mystery** · Difficulty: ★★☆  
+> A pipeline produces the following sequence of daily row checksums:
+>
+> `3, 8, 15, 24, 35, ?`
+>
+> Find the missing number **and** the rule. Bonus: can you express the rule as SQL?
+
+<details>
+<summary><strong>🔓 Reveal the solution (no peeking!)</strong></summary>
+
+The next checksum is **48**.
+
+The successive differences are `5, 7, 9, 11, 13`, so the next value is `35 + 13 = 48`.
+
+For day number `n = 1, 2, 3, …`, the rule is `n * (n + 2)`.
+
+```sql
+SELECT day_number, day_number * (day_number + 2) AS checksum
+FROM days;
+```
+
+*Data engineer's bonus:* a predictable checksum can catch a mismatch, but a real production data-quality check needs to be defined around the actual data and invariants.
+
+</details>
+
+<details>
+<summary><strong>🕹️ Next arcade idea: Pipeline Panic</strong></summary>
+
+A tiny browser game where you repair a broken pipeline by spotting duplicate keys, fixing missing values, and solving number puzzles. A future **GitHub Pages** side project, not a finished game yet.
+
+</details>
+
 ### 🪄 A little more about me
 
 <details>
