@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="415" viewBox="0 0 1000 415" role="img" aria-labelledby="title desc">
+<title id="title">Jemma's Math Arcade: The Checksum Mystery</title><desc id="desc">Level 001. Puzzle sequence 03, 08, 15, 24, 35, question mark. Recover the missing value.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111827"/><stop offset="1" stop-color="#1B2142"/></linearGradient><linearGradient id="tile" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2D3B59"/><stop offset="1" stop-color="#202B44"/></linearGradient><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#93A7E0" stroke-opacity=".055"/></pattern></defs>
+<rect width="1000" height="415" rx="22" fill="url(#bg)"/><rect width="1000" height="415" rx="22" fill="url(#grid)"/><rect x="16" y="16" width="968" height="383" rx="15" fill="none" stroke="#4B507F" stroke-width="1.5"/>
+<g font-family="Arial,Helvetica,sans-serif">
+<rect x="46" y="39" width="39" height="29" rx="8" fill="#8666D9"/><path d="M57 52 h16 m-8 -8 v16" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+<text x="101" y="61" font-size="26" font-weight="700" fill="#F4F3FF" letter-spacing="2">JEMMA'S MATH ARCADE</text>
+<rect x="809" y="37" width="144" height="36" rx="18" fill="#292C54" stroke="#A68BF4"/><text x="881" y="60" text-anchor="middle" font-size="16" fill="#D6C8FF" font-weight="700" letter-spacing="1">LEVEL 001</text>
+<path d="M45 88 H955" stroke="#474C72"/>
+<text x="48" y="124" fill="#69DFE7" font-size="18" font-weight="700" letter-spacing="2">THE CHECKSUM MYSTERY</text>
+<text x="953" y="124" text-anchor="end" fill="#F7D985" font-size="23">★★☆</text>
+<text x="48" y="157" fill="#BFCBE5" font-size="18">A data sequence is missing its final value. Find the pattern to restore the pipeline.</text>
+</g>
+<g font-family="Consolas,Menlo,monospace" font-size="39" font-weight="700" text-anchor="middle">
+<rect x="47" y="188" width="139" height="91" rx="12" fill="url(#tile)" stroke="#48577A" stroke-width="1.5"/><text x="116.5" y="245" fill="#F4F8FF">03</text><rect x="200" y="188" width="139" height="91" rx="12" fill="url(#tile)" stroke="#48577A" stroke-width="1.5"/><text x="269.5" y="245" fill="#F4F8FF">08</text><rect x="353" y="188" width="139" height="91" rx="12" fill="url(#tile)" stroke="#48577A" stroke-width="1.5"/><text x="422.5" y="245" fill="#F4F8FF">15</text><rect x="506" y="188" width="139" height="91" rx="12" fill="url(#tile)" stroke="#48577A" stroke-width="1.5"/><text x="575.5" y="245" fill="#F4F8FF">24</text><rect x="659" y="188" width="139" height="91" rx="12" fill="url(#tile)" stroke="#48577A" stroke-width="1.5"/><text x="728.5" y="245" fill="#F4F8FF">35</text><rect x="812" y="188" width="139" height="91" rx="12" fill="#143C4A" stroke="#59D9CA" stroke-width="3"/><text x="881.5" y="245" fill="#7FF4E7">??</text>
+</g>
+<g font-family="Arial,Helvetica,sans-serif">
+<circle cx="60" cy="330" r="6" fill="#55E3C4"/><text x="80" y="337" fill="#B9C7DB" font-size="17" font-weight="700" letter-spacing=".7">MISSION: RECOVER THE MISSING VALUE + EXPLAIN THE RULE</text>
+<rect x="777" y="313" width="174" height="42" rx="10" fill="#292750" stroke="#8F79DC"/><text x="864" y="340" text-anchor="middle" fill="#D5CCFB" font-size="16" font-weight="700">SOLUTION BELOW ↓</text>
+<text x="49" y="382" fill="#7082AC" font-size="14" font-family="Consolas,Menlo,monospace">/math-arcade/puzzle-001</text>
+</g>
+</svg>
