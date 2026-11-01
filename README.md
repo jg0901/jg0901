@@ -88,7 +88,7 @@ Not every learning session becomes a commit, but here's where my experiments tak
 |:--|:--|
 | 🔧 **Pipeline reliability** | Data checks, testing and simpler workflows |
 | 🚀 **Ship with confidence** | Git, CI/CD and deployment patterns |
-| 🧠 **Math side quests** | Probability, simulation and problem solving |
+| 🧠 **Math side quests** | Probability, simulation, and problem solving |
 
 **The green squares:** GitHub's live contribution calendar is just below this profile README. It reflects qualifying GitHub activity, not every hour of learning.
 
